@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/mews0/team-profile-generator#readme",
   "dependencies": {
-    "inquirer": "^8.1.2",
+    "inquirer": "^8.1.2"
+  },
+  "devDependencies": {
     "jest": "^27.0.6"
   }
 }
