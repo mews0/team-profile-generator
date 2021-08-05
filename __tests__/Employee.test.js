@@ -4,8 +4,8 @@ test(`creates an employee object`, () => {
   const employee = new Employee(`John`, 1, `john@nothing.com`);
 
   expect(employee.name).toBe(`John`);
-  expect(employee.id).toEqual(expect.any(Number));
-  expect(employee.email).toEqual(expect.stringContaining(`@`));
+  expect(employee.id).toBe(1);
+  expect(employee.email).toBe(`john@nothing.com`);
 });
 
 test(`gets employee's name`, () => {
@@ -23,7 +23,7 @@ test(`gets employee's id`, () => {
 test(`gets employee's email`, () => {
   const employee = new Employee(`John`, 1, `john@nothing.com`);
 
-  expect(employee.getEmail()).toEqual(expect.stringContaining(`@`));
+  expect(employee.getEmail()).toBe(`john@nothing.com`);
 });
 
 test(`gets employee's role`, () => {
