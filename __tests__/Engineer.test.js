@@ -27,6 +27,12 @@ test(`gets engineer's email`, () => {
   expect(engineer.getEmail()).toBe(`john@nothing.com`);
 });
 
+test(`gets engineer's github username`, () => {
+  const engineer = new Engineer(`John`, 1, `john@nothing.com`, `john1234`);
+
+  expect(engineer.getGithub()).toBe(`john1234`);
+});
+
 test(`gets engineer's role`, () => {
   const engineer = new Engineer(`John`, 1, `john@nothing.com`, `john1234`);
 
