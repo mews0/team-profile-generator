@@ -1,6 +1,8 @@
 // Import Inquirer.js
 const inquirer = require(`inquirer`);
 
+const generatePage = require(`./src/page-template`);
+
 // Import children of class Employee
 const Manager = require(`./lib/Manager`);
 const Engineer = require(`./lib/Engineer`);
@@ -103,8 +105,8 @@ const promptUser = teamData => {
 
 promptUser()
   .then(teamData => {
-    console.log(teamData);
-    // return generatePage(teamData);
+    // console.log(teamData);
+    return generatePage(teamData);
   })
   .then(pageHTML => {
     // return writeFile(pageHTML);

@@ -1,0 +1,47 @@
+:root {
+  --red: rgb(232, 71, 86);
+  --blue: rgb(0, 119, 247);
+  --light-gray: rgb(246, 247, 249);
+  --gray: rgb(240, 240, 240);
+}
+
+body {
+  font-family: sans-serif;
+  color: white;
+}
+
+header {
+  background-color: var(--red);
+  padding: 10px;
+  text-align: center;
+}
+
+.employee {
+  margin: 30px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.employee-header {
+  background-color: var(--blue);
+  padding: 1px 10px;
+}
+
+.employee-main {
+  /* This is a dummy color. Actual color will be var(--light-gray) */
+  background-color: green;
+}
+
+.employee-info {
+  /* margin: 12px; */
+  border: 2px solid var(--gray);
+  background-color: white;
+  color: black;
+}
+
+.employee-id, .employee-email, .employee-office {
+  padding: 0px 12px;
+}
+
+.employee-id, .employee-email {
+  border-bottom: 2px solid var(--gray);
+}
