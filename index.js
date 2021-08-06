@@ -20,7 +20,7 @@ const promptUser = teamData => {
     // The manager is always the first employee to be entered
     employee = new Manager();
   }
-  
+
   // Capture user input in command line
   return inquirer.prompt([
     {
@@ -86,21 +86,60 @@ const promptUser = teamData => {
       choices: [`Add engineer to the team`, `Add intern to the team`, `Finish building the team`]
     }
   ])
-  .then(employeeData => {
-    // Push employeeData to teamData array
-    teamData.push(employeeData);
+    .then(employeeData => {
+      // Add role to employeeData
+      employeeData.role = employee.getRole();
 
-    // If user wants to add a member to the team, then set employee to type and return promptUser()
-    if (employeeData.buildTeam === `Add engineer to the team`) {
-      employee = new Engineer();
-      return promptUser(teamData);
-    } else if (employeeData.buildTeam === `Add intern to the team`) {
-      employee = new Intern();
-      return promptUser(teamData);
-    } else {
-      return teamData;
-    }
-  });
+      // Rename employeeData.special property based on employee type
+      switch (employeeData.role) {
+        case `Manager`:
+          employeeData.officeNumber = employeeData.special;
+          delete employeeData.special;
+          break;
+        case `Engineer`:
+          employeeData.github = employeeData.special;
+          delete employeeData.special;
+          break;
+        case `Intern`:
+          employeeData.school = employeeData.special;
+          delete employeeData.special;
+          break;
+        default:
+      }
+
+      // Delete employee.BuildTeam property
+
+
+      // Push employeeData to teamData array
+      teamData.push(employeeData);
+
+      // If user wants to add a member to the team, then set employee to type and return promptUser()
+      switch (employeeData.buildTeam) {
+        case `Add engineer to the team`:
+          employee = new Engineer();
+          delete employeeData.buildTeam; // Delete property after it has served its purpose
+          return promptUser(teamData);
+        case `Add intern to the team`:
+          employee = new Intern();
+          delete employeeData.buildTeam; // Delete property after it has served its purpose
+          return promptUser(teamData);
+        case `Finish building the team`:
+          delete employeeData.buildTeam; // Delete property after it has served its purpose
+          return teamData;
+        default:
+      }
+      // if (employeeData.buildTeam === `Add engineer to the team`) {
+      //   employee = new Engineer();
+      //   delete employeeData.buildTeam; // Delete property after it has served its purpose
+      //   return promptUser(teamData);
+      // } else if (employeeData.buildTeam === `Add intern to the team`) {
+      //   employee = new Intern();
+      //   delete employeeData.buildTeam; // Delete property after it has served its purpose
+      //   return promptUser(teamData);
+      // } else {
+      //   return teamData;
+      // }
+    });
 };
 
 promptUser()

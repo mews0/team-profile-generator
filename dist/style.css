@@ -38,7 +38,7 @@ header {
   color: black;
 }
 
-.employee-id, .employee-email, .employee-office {
+.employee-id, .employee-email, .employee-special {
   padding: 0px 12px;
 }
 
