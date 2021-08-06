@@ -6,16 +6,16 @@ const Manager = require(`./lib/Manager`);
 const Engineer = require(`./lib/Engineer`);
 const Intern = require(`./lib/Intern`);
 
-// Array to store Employee objects -- data captured from user input
-const teamData = [];
+// Create object to store employee currently being entered
+let employee = {};
 
 // Prompt user for employee data
-const promptUser = () => {
-  // Create new object to store employee currently being entered
-  const employee = {};
+const promptUser = teamData => {
 
-  // If this is the first employee being entered, then the employee is the manager
-  if (teamData.length === 0) {
+  // If no team members have been entered, then create teamData array
+  if (!teamData) {
+    teamData = [];
+    // The manager is always the first employee to be entered
     employee = new Manager();
   }
   
@@ -39,6 +39,7 @@ const promptUser = () => {
       name: `id`,
       message: `Enter the ${employee.getRole()}'s employee ID:`,
       validate: idInput => {
+        // Validation could also include preventing the user from entering an ID already entered for another employee
         if (idInput) {
           return true;
         } else {
@@ -52,6 +53,7 @@ const promptUser = () => {
       name: `email`,
       message: `Enter the ${employee.getRole()}'s email address:`,
       validate: emailInput => {
+        // Validation could also include preventing the user from entering an email already entered for another employee
         if (emailInput.includes(`@`)) {
           return true;
         } else {
@@ -60,6 +62,7 @@ const promptUser = () => {
         }
       }
     },
+    // If the employee is a manager, then prompt user for office number
     {
       type: `input`,
       name: `officeNumber`,
@@ -72,6 +75,8 @@ const promptUser = () => {
         }
       }
     },
+    // If the employee is an engineer, then prompt user for GitHub username
+    // If the employee is an intern, then prompt user for school
     {
       type: `list`,
       name: `buildTeam`,
@@ -80,10 +85,30 @@ const promptUser = () => {
     }
   ])
   .then(employeeData => {
-    // push employeeData to teamData array
-    // if user wants to add a member to the team, then set employee to type and return promptUser()
-    // else return teamData
+    // Push employeeData to teamData array
+    teamData.push(employeeData);
+
+    // If user wants to add a member to the team, then set employee to type and return promptUser()
+    if (employeeData.buildTeam === `Add engineer to the team`) {
+      employee = new Engineer();
+      return promptUser(teamData);
+    } else if (employeeData.buildTeam === `Add intern to the team`) {
+      employee = new Intern();
+      return promptUser(teamData);
+    } else {
+      return teamData;
+    }
   });
 };
 
-promptUser();
+promptUser()
+  .then(teamData => {
+    console.log(teamData);
+    // return generatePage(teamData);
+  })
+  .then(pageHTML => {
+    // return writeFile(pageHTML);
+  })
+  .catch(err => {
+    console.log(err);
+  });
