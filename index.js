@@ -63,20 +63,20 @@ const promptUser = teamData => {
       }
     },
     // If the employee is a manager, then prompt user for office number
+    // If the employee is an engineer, then prompt user for GitHub username
+    // If the employee is an intern, then prompt user for school
     {
       type: `input`,
-      name: `officeNumber`,
-      message: `Enter the ${employee.getRole()}'s office number:`,
-      validate: officeNumberInput => {
-        if (parseInt(officeNumberInput)) {
+      name: `special`,
+      message: `Enter the ${employee.getRole()}'s ${employee.getSpecial()}:`,
+      validate: specialInput => {
+        if (specialInput) {
           return true;
         } else {
-          console.error(`\nPlease enter a valid office number!`);
+          console.error(`\nPlease enter a(n) ${employee.getSpecial()}!`);
         }
       }
     },
-    // If the employee is an engineer, then prompt user for GitHub username
-    // If the employee is an intern, then prompt user for school
     {
       type: `list`,
       name: `buildTeam`,
