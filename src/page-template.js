@@ -12,7 +12,7 @@ const generatePage = templateData => { // templateData is an array of employee o
               <p>ID: ${manager.id}</p>
             </div>
             <div class="employee-email">
-              <p>Email: ${manager.email}</p>
+              <p>Email: <a href="mailto:${manager.email}" target="_blank">${manager.email}</a></p>
             </div>
             <div class="employee-special">
               <p>Office Number: ${manager.officeNumber}</p>
@@ -32,10 +32,10 @@ const generatePage = templateData => { // templateData is an array of employee o
         <p>ID: ${engineer.id}</p>
       </div>
       <div class="employee-email">
-        <p>Email: ${engineer.email}</p>
+        <p>Email: <a href="mailto:${engineer.email}" target="_blank">${engineer.email}</a></p>
       </div>
       <div class="employee-special">
-        <p>GitHub: ${engineer.github}</p>
+        <p>GitHub: <a href="https://github.com/${engineer.github}" target="_blank">${engineer.github}</a></p>
       </div>
     </div>
   </div>`
@@ -52,7 +52,7 @@ const generatePage = templateData => { // templateData is an array of employee o
         <p>ID: ${intern.id}</p>
       </div>
       <div class="employee-email">
-        <p>Email: ${intern.email}</p>
+        <p>Email: <a href="mailto:${intern.email}" target="_blank">${intern.email}</a></p>
       </div>
       <div class="employee-special">
         <p>School: ${intern.school}</p>
