@@ -13,16 +13,13 @@ This application generates a team's basic information based on user input from t
 
 ## Installation
 * [Download Node.js](https://nodejs.org/en/)
-* Command line: 
-  * `npm install jest --save-dev`
-  * `npm install inquirer`
 
 ## Usage
-* Command line:
-  * `npm run test`
-  * `node index.js`
-* Follow instructions in user prompts.
-* Open dist folder to get index.html.
+1. Command line:
+   * To run tests: `npm run test`
+   * To run application: `node index.js`
+2. Follow instructions in user prompts.
+3. Open dist folder to get index.html.
 
 ## License
 MIT License.
