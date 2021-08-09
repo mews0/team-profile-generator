@@ -1,7 +1,6 @@
 :root {
   --red: rgb(232, 71, 86);
   --blue: rgb(0, 119, 247);
-  --light-gray: rgb(246, 247, 249);
   --gray: rgb(240, 240, 240);
 }
 
@@ -19,6 +18,8 @@ header {
 .employee {
   margin: 30px;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+  float: left;
+  width: 100%;
 }
 
 .employee-header {
@@ -26,13 +27,7 @@ header {
   padding: 1px 12px;
 }
 
-.employee-main {
-  /* This is a dummy color. Actual color will be var(--light-gray) */
-  background-color: green;
-}
-
 .employee-info {
-  /* margin: 12px; */
   border: 2px solid var(--gray);
   background-color: white;
   color: black;
@@ -44,4 +39,10 @@ header {
 
 .employee-id, .employee-email {
   border-bottom: 2px solid var(--gray);
+}
+
+@media screen and (min-width: 1200px) {
+  .employee {
+    width: 28%;
+  }
 }
