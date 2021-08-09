@@ -12,7 +12,7 @@ const Intern = require(`./lib/Intern`);
 let employee = {};
 
 // Prompt user for employee data
-const promptUser = teamData => {
+const promptUser = teamData => { // teamData is an array employee objects used to store responses from user
 
   // If no team members have been entered, then create teamData array
   if (!teamData) {
@@ -86,7 +86,7 @@ const promptUser = teamData => {
       choices: [`Add engineer to the team`, `Add intern to the team`, `Finish building the team`]
     }
   ])
-    .then(employeeData => {
+    .then(employeeData => {  // employeeData is equal to the teamData parameter from promptUser()
       // Add role to employeeData
       employeeData.role = employee.getRole();
 
@@ -107,9 +107,6 @@ const promptUser = teamData => {
         default:
       }
 
-      // Delete employee.BuildTeam property
-
-
       // Push employeeData to teamData array
       teamData.push(employeeData);
 
@@ -128,26 +125,15 @@ const promptUser = teamData => {
           return teamData;
         default:
       }
-      // if (employeeData.buildTeam === `Add engineer to the team`) {
-      //   employee = new Engineer();
-      //   delete employeeData.buildTeam; // Delete property after it has served its purpose
-      //   return promptUser(teamData);
-      // } else if (employeeData.buildTeam === `Add intern to the team`) {
-      //   employee = new Intern();
-      //   delete employeeData.buildTeam; // Delete property after it has served its purpose
-      //   return promptUser(teamData);
-      // } else {
-      //   return teamData;
-      // }
     });
 };
 
 promptUser()
   .then(teamData => {
-    // console.log(teamData);
-    return generatePage(teamData);
+    return generatePage(teamData); // see './src/page-template.js for details on generatePage()'
   })
   .then(pageHTML => {
+    console.log(pageHTML);
     // return writeFile(pageHTML);
   })
   .catch(err => {
